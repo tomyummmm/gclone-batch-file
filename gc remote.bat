@@ -19,14 +19,14 @@ echo off
 
 :menu
 echo.
-echo 1) COPY
-echo 2) MOVE
-echo 3) SYNC
-echo 4) SIZE
-echo 5) CHECK
+echo 1) COPY - Copy files from source to dest, skipping already copied.
+echo 2) MOVE - Move files from source to dest.
+echo 3) SYNC - Make source and dest identical, modifying destination only.
+echo 4) SIZE - Return the total size and number of objects in remote:path.
+echo 5) CHECK - Check if the files in the source and destination match.
 echo 6) LIST
-echo 7) DELETE / PURGE
-echo 8) DEDUPE
+echo 7) DELETE / PURGE - Remove path / contents.
+echo 8) DEDUPE - Interactively find duplicate files and delete/rename them.
 echo 9) REMOVE EMPTY FOLDERS
 echo 10) EMPTY TRASH
 echo N) NCDU - Explore a remote with a text based user interface.
