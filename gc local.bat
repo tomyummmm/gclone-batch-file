@@ -42,6 +42,8 @@ if /I %option% == N (goto ncdu)
 if /I %option% == M (goto md5)
 if /I %option% == C (goto config)
 if /I %option% == Q (EXIT)
+echo Invalid input!
+goto menu
 echo.
 
 
@@ -144,7 +146,7 @@ goto menu
 :dedp
 echo.
 set /P src="[Enter Folder / TeamDrive] "
-set /p choice="Do you want to do a dry run? (y/n) "
+set /P choice="Do you want to do a dry run? (y/n) "
 if /I %choice%==y (goto drd)
 if /I %choice%==n (goto nodrd)
 echo.
@@ -165,7 +167,7 @@ echo.
 
 :nodrd
 echo ----------------------------------------------------------------------------------------------------------------------
-set /p choice=Do you want to PERMANENTLY delete the duplicates? (y - Permanent / n - Send to trash bin)
+set /P choice=Do you want to PERMANENTLY delete the duplicates? (y - Permanent / n - Send to trash bin)
 if /I %choice%==y (gclone dedupe --dedupe-mode newest %src% -v --drive-use-trash=false --fast-list)
 if /I %choice%==n (gclone dedupe --dedupe-mode newest %src% -v --fast-list)
 echo.
@@ -176,7 +178,7 @@ goto menu
 :rmdi
 echo.
 set /P src="[Enter Folder / TeamDrive] "
-set /p choice="Do you want to do a dry run? (y/n) "
+set /P choice="Do you want to do a dry run? (y/n) "
 if /I %choice%==y (goto drr)
 if /I %choice%==n (goto nodrr)
 echo.
@@ -196,7 +198,7 @@ echo.
 
 :nodrr
 echo ----------------------------------------------------------------------------------------------------------------------
-set /p choice=Do you want to PERMANENTLY delete empty folders? (y - Permanent / n - Send to trash bin)
+set /P choice=Do you want to PERMANENTLY delete empty folders? (y - Permanent / n - Send to trash bin)
 if /I %choice%==y (gclone rmdirs %src% -v --drive-use-trash=false --fast-list)
 if /I %choice%==n (gclone rmdirs %src% -v --fast-list)
 echo.
@@ -208,7 +210,7 @@ goto menu
 echo.
 set /P src="[Enter TeamDrive ID] "
 echo ----------------------------------------------------------------------------------------------------------------------
-set /p choice="Do you want to do a dry run? (y/n) "
+set /P choice="Do you want to do a dry run? (y/n) "
 if /I %choice%==y (goto emptdr)
 if /I %choice%==n (goto emptnodr)
 
