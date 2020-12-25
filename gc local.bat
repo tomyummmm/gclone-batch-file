@@ -12,19 +12,19 @@ echo off
 
 :menu
 echo.
-echo 1) COPY
-echo 2) MOVE
-echo 3) SYNC
-echo 4) SIZE
-echo 5) CHECK
+echo 1) COPY - Copy files from source to dest, skipping already copied.
+echo 2) MOVE - Move files from source to dest.
+echo 3) SYNC - Make source and dest identical, modifying destination only.
+echo 4) SIZE - Return the total size and number of objects in remote:path.
+echo 5) CHECK - Check if the files in the source and destination match.
 echo 6) LIST
-echo 7) DELETE / PURGE
-echo 8) DEDUPE
+echo 7) DELETE / PURGE - Remove path / contents.
+echo 8) DEDUPE - Interactively find duplicate files and delete/rename them.
 echo 9) REMOVE EMPTY FOLDERS
 echo 10) EMPTY TRASH
 echo N) NCDU - Explore a remote with a text based user interface.
 echo M) MD5SUM - Produces an md5sum file for all the objects in the path.
-echo C) CONFIG
+echo C) CONFIG - Enter an interactive configuration session.
 echo Q) EXIT
 echo.
 set /P option="Choose your Mode: "
@@ -52,7 +52,7 @@ echo.
 set /P src="[Enter Source Folder / TeamDrive] "
 echo ----------------------------------------------------------------------------------------------------------------------
 set /P dst="[Enter Destination Folder / TeamDrive] "
-gclone copy %src% %dst% --transfers 50 --tpslimit-burst 50 --checkers 10 -vP --stats-one-line --stats=15s --ignore-existing --drive-server-side-across-configs --drive-chunk-size 128M --drive-acknowledge-abuse --drive-keep-revision-forever --fast-list
+gclone copy %src% %dst% --transfers 10 --tpslimit-burst 50 --checkers 10 -vP --stats-one-line --stats=10s --ignore-existing --drive-server-side-across-configs --drive-chunk-size 128M --drive-acknowledge-abuse --drive-keep-revision-forever --fast-list
 echo.
 pause
 goto menu
@@ -64,7 +64,7 @@ echo.
 set /P src="[Enter Source Folder / TeamDrive] "
 echo ----------------------------------------------------------------------------------------------------------------------
 set /P dst="[Enter Destination Folder / TeamDrive] "
-gclone move %src% %dst% --transfers 50 --tpslimit-burst 50 --checkers 10 -vP --stats-one-line --stats=15s --ignore-existing --drive-server-side-across-configs --drive-chunk-size 128M --drive-acknowledge-abuse --drive-keep-revision-forever --fast-list
+gclone move %src% %dst% --transfers 50 --tpslimit-burst 50 --checkers 10 -vP --stats-one-line --stats=10s --ignore-existing --drive-server-side-across-configs --drive-chunk-size 128M --drive-acknowledge-abuse --drive-keep-revision-forever --fast-list
 echo.
 pause
 goto menu
@@ -75,7 +75,7 @@ echo.
 set /P src="[Enter Source Folder / TeamDrive] "
 echo ----------------------------------------------------------------------------------------------------------------------
 set /P dst="[Enter Destination Folder / TeamDrive] "
-gclone sync %src% %dst% --transfers 50 --tpslimit-burst 50 --checkers 10 -vP --stats-one-line --stats=15s --drive-server-side-across-configs --drive-chunk-size 128M --drive-acknowledge-abuse --drive-keep-revision-forever --fast-list
+gclone sync %src% %dst% --transfers 50 --tpslimit-burst 50 --checkers 10 -vP --stats-one-line --stats=10s --drive-server-side-across-configs --drive-chunk-size 128M --drive-acknowledge-abuse --drive-keep-revision-forever --fast-list
 echo.
 pause
 goto menu
